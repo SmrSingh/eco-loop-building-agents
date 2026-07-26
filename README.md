@@ -119,7 +119,7 @@ eco-loop-agents/
 
 3. **Install Ollama** ([ollama.com](https://ollama.com)) and pull the model:
    ```bash
-   ollama pull qwen2.5:3b
+   ollama pull qwen2.5:1.5b
    ollama serve
    ```
 
