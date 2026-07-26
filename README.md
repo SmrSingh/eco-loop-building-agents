@@ -157,7 +157,7 @@ python compare_dashboard.py
 | Total facility electricity (kWh) | 537.06 | 536.15 | -0.17% |
 | % energy reduction | — | 0.17% | |
 | Comfort compliance | 19.7% | 66.7% | +47pp |
-| Self-corrections applied | — | [check summary.json] |
+| Self-corrections applied | — | 0 |
 
 ![Dashboard](dashboard.png)
 
