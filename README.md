@@ -238,7 +238,7 @@ python compare_dashboard.py
 
 - [x] Fully functional unified source code (`main.py`, `tools.py`, `llm_agent.py`, `compare_dashboard.py`)
 - [x] Baseline `.idf` (`SmallOffice_CentralDOAS.idf`) and AI-controlled `.idf` (`SmallOffice_AI.idf`)
-- [x] Quantitative savings dashboard (`dashboard.png`, `summary.json`) — generate from the final 14-day run
+- [x] Quantitative savings dashboard (`dashboard.png`, `summary.json`)
 - [x] System Architecture Document — this README
 - [x] PoC demonstration video (max 3 minutes)
 - [x] Presentation slides (provided template, filled in)
