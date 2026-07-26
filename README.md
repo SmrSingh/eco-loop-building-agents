@@ -5,7 +5,8 @@
 Submitted for the *Eco-Loop Building Agents* hackathon problem statement. Buildings consume roughly 40% of global energy, and traditional rule-based Building Management Systems (BMS) cannot adapt in real time to weather, occupancy, or grid conditions. This project demonstrates a working Physical AI proof-of-concept in which an LLM continuously reads live sensor data out of a running EnergyPlus simulation, reasons about comfort, energy, and grid-carbon targets, and writes control actions directly back into the same simulation instance — with no human in the loop and no restart between decisions.
 
 ---
-
+## Demo Video
+https://www.loom.com/share/9dac9ceacadb4752bea2108e6b1e538a
 ## Table of Contents
 
 - [Deliverables Map](#deliverables-map)
