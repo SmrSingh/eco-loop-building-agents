@@ -89,19 +89,19 @@ This PoC evaluates a **14-day run period** (January 1–14, Chicago TMY3 weather
 
 ```
 eco-loop-agents/
-├── main.py                        # EnergyPlus EMS closed-loop driver
-├── tools.py                       # Agentic tools: sensors, actuators, PMV, carbon signal, self-correction
-├── llm_agent.py                   # LLM tool-calling agent (Qwen2.5-3B via Ollama)
-├── compare_dashboard.py           # Baseline vs AI comparison dashboard + summary
-├── SmallOffice_CentralDOAS.idf    # Baseline building model (unmodified)
-├── SmallOffice_AI.idf             # AI-controlled building model
-├── USA_IL_Chicago-*.epw           # Weather file
-├── baseline.csv                   # Baseline run log (generated)
-├── ai.csv                         # AI-controlled run log (generated)
-├── corrections.log                # Self-correction events (generated)
-├── dashboard.png                  # Savings + comfort visualization (generated)
-├── summary.json                   # Headline results (generated)
-└── README.md                      # This file
+├── main.py                        
+├── tools.py                       
+├── llm_agent.py                   
+├── compare_dashboard.py           
+├── SmallOffice_CentralDOAS.idf    
+├── SmallOffice_AI.idf             
+├── USA_IL_Chicago-*.epw           
+├── baseline.csv                   
+├── ai.csv                         
+├── corrections.log                
+├── dashboard.png                  
+├── summary.json                   
+└── README.md                     
 ```
 
 ---
