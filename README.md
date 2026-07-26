@@ -21,50 +21,31 @@ Built for the *Eco-Loop Building Agents* hackathon problem statement — buildin
 
 ## System Architecture
 
+```mermaid
+flowchart TD
+
+    EP["EnergyPlus Simulation<br/>SmallOffice_AI.idf<br/>5 Zones + Chicago Weather"]
+
+    CB["callback_end_zone_timestep_after_zone_reporting()<br/>(main.py)"]
+
+    TOOLS["BuildingTools (tools.py)<br/><br/>• Read zone temperatures<br/>• Compute PMV comfort<br/>• Read facility electricity<br/>• Compute carbon signal"]
+
+    AGENT["EcoLoopAgent (llm_agent.py)<br/><br/>Ollama<br/>qwen2.5:1.5b<br/>OpenAI-compatible Tool Calling"]
+
+    ACTION["apply_actions()<br/><br/>• Clamp unsafe values<br/>• Enforce heating/cooling deadband<br/>• Log self-corrections"]
+
+    EMS["EnergyPlus EMS Actuators"]
+
+    LOOP["Same Running EnergyPlus Simulation<br/>(No Restart Required)"]
+
+    EP -->|"Every zone timestep"| CB
+    CB --> TOOLS
+    TOOLS -->|"Every 60 simulated minutes"| AGENT
+    AGENT -->|"tool_calls:<br/>set_zone_setpoints()"| ACTION
+    ACTION --> EMS
+    EMS --> LOOP
+    LOOP --> EP
 ```
-                     ┌─────────────────────────────┐
-                     │   EnergyPlus (running sim)   │
-                     │   SmallOffice_AI.idf          │
-                     │   5 zones + Chicago weather   │
-                     └───────────────┬───────────────┘
-                                     │ every zone timestep
-                                     ▼
-              callback_end_zone_timestep_after_zone_reporting()
-                              [main.py]
-                                     │
-                                     ▼
-                    ┌────────────────────────────────┐
-                    │   BuildingTools (tools.py)       │
-                    │   - reads zone air temperature   │
-                    │   - computes PMV comfort index    │
-                    │   - reads facility electricity    │
-                    │   - computes grid carbon signal  │
-                    └────────────────┬───────────────┘
-                                     │ every 30 sim-minutes
-                                     ▼
-                    ┌────────────────────────────────┐
-                    │   EcoLoopAgent (llm_agent.py)    │
-                    │   Qwen2.5-3B via Ollama           │
-                    │   (OpenAI-compatible tool-calling)│
-                    └────────────────┬───────────────┘
-                                     │ tool_calls: set_zone_setpoints(...)
-                                     ▼
-                    ┌────────────────────────────────┐
-                    │   BuildingTools.apply_actions()  │
-                    │   - clamps unsafe values          │
-                    │   - enforces heat/cool deadband   │
-                    │   - logs self-corrections         │
-                    └────────────────┬───────────────┘
-                                     │ EMS actuator write
-                                     ▼
-                     back into the SAME running EnergyPlus
-                       instance — true forward injection
-```
-
-**The loop, in one sentence:** EnergyPlus streams live sensor data → the LLM reasons against comfort/carbon targets and calls a tool → the tool call is validated and clamped → the result is written straight back into the running simulation's actuators, closing the loop without ever stopping or restarting EnergyPlus.
-
----
-
 ## Design Decisions
 
 ### Single running process, no restart-per-step
