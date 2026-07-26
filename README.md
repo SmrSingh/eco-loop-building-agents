@@ -85,6 +85,9 @@ flowchart TD
 The loop is a single continuously running process: EnergyPlus calls back into Python on every zone timestep, and on the decision cadence the same process queries the LLM and writes the result straight back into the live EMS actuators. There is no intermediate file handoff between EnergyPlus and the agent.
 
 ---
+## Dashboard
+<img width="770" height="848" alt="image" src="https://github.com/user-attachments/assets/d50bab0a-a325-4cf3-9220-344c8ccbda48" />
+
 
 ## Cognitive Engine: Prompting, Tool-Calling & Latency
 
